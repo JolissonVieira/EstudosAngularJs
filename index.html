@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="listaTelefonica">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Telefonica</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="controller/modulo-principal.js"></script>
+    <script src="controller/lista-telefonica-controller.js"></script>
+    <style>
+        .jumbotron{
+            width: 400px;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        };
+        .table{
+            margin-top: 20px;
+        }
+        .form-control{
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body ng-controller="listaTelefonicaController">
+    <h2 class="jumbotron">Lista Telefonica</h2>
+    <table class="jumbotron table table-bordered">
+        <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+        </tr>
+        <tr ng-repeat="contato in contatos">
+            <td>{{contato.nome}}</td>
+            <td>{{contato.telefone}}</td>
+        </tr>
+    </table>
+    <input class="form-control" type="text" placeholder="Nome" ng-model="contato.nome">
+    <input class="form-control" type="text" placeholder="Telefone" ng-model="contato.telefone">
+    <br>
+    <button class="btn btn-primary btn-block" ng-click="adicionarContato()" >Adicionar</button>
+</body>
+</html>
