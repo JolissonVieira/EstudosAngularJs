@@ -27,20 +27,22 @@
     </style>
 </head>
 <body ng-controller="listaTelefonicaController">
-    <h2 class="jumbotron">Lista Telefonica</h2>
-    <table class="jumbotron table table-bordered">
-        <tr>
-            <th>Nome</th>
-            <th>Telefone</th>
-        </tr>
-        <tr ng-repeat="contato in contatos">
-            <td>{{contato.nome}}</td>
-            <td>{{contato.telefone}}</td>
-        </tr>
-    </table>
-    <input class="form-control" type="text" placeholder="Nome" ng-model="contato.nome">
-    <input class="form-control" type="text" placeholder="Telefone" ng-model="contato.telefone">
-    <br>
-    <button class="btn btn-primary btn-block" ng-click="adicionarContato()" >Adicionar</button>
+    <div class="jumbotron">
+        <h3 >Lista Telefonica</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+            </tr>
+            <tr ng-repeat="contato in contatos">
+                <td>{{contato.nome}}</td>
+                <td>{{contato.telefone}}</td>
+            </tr>
+        </table>
+        <input class="form-control" type="text" placeholder="Nome" ng-model="contato.nome">
+        <input class="form-control" type="text" placeholder="Telefone" ng-model="contato.telefone">
+        <br>
+        <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" >Adicionar</button>
+    </div>
 </body>
 </html>
