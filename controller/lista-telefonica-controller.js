@@ -4,8 +4,17 @@ angular.module('listaTelefonica').controller('listaTelefonicaController',functio
         {nome: "Paulo",telefone:"6193267594"},
         {nome: "Antonio",telefone:"6185142021"}
     ]
+    $scope.operadoras = [
+        {nome: "Oi",id:"1"},
+        {nome: "Tim",id:"2"},
+        {nome: "Vivo",id:"3"},
+        {nome: "Claro",id:"4"}
+    ]
     $scope.adicionarContato = function(contato){
         $scope.contatos.push(angular.copy(contato));
         delete $scope.contato;
-    }
+    };
+    $scope.limparCampos = function(contato){
+        delete $scope.contato;
+    };
 });
