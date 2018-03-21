@@ -17,4 +17,19 @@ angular.module('listaTelefonica').controller('listaTelefonicaController',functio
     $scope.limparCampos = function(contato){
         delete $scope.contato;
     };
+    $scope.removerContato = function(contatos){
+
+        for (var i = contatos.length -1 ; i >= 0 ; i--) {
+            if (contatos[i].selecionado) {
+                contatos.splice(i, 1);
+            }
+        }
+
+        $scope.contatos = contatos.filter(function(contato){
+            if (!contato.selecionado) {
+                return contato
+            };
+        });
+
+    }
 });
