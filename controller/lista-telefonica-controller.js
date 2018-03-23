@@ -13,9 +13,11 @@ angular.module('listaTelefonica').controller('listaTelefonicaController',functio
     $scope.adicionarContato = function(contato){
         $scope.contatos.push(angular.copy(contato));
         delete $scope.contato;
+        $scope.contatoForm.$setPristine();
     };
     $scope.limparCampos = function(contato){
         delete $scope.contato;
+        $scope.contatoForm.$setPristine();
     };
     $scope.removerContato = function(contatos){
 
