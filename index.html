@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="lib/angular.js"></script>
+    <script src="lib/angular-messages.js"></script>
     <script src="controller/modulo-principal.js"></script>
     <script src="controller/lista-telefonica-controller.js"></script>
     <style>
@@ -49,14 +50,37 @@
                 <td>{{contato.operadora.nome}}</td>
             </tr>
         </table>
-        <input class="form-control" type="text" placeholder="Nome" ng-model="contato.nome">
-        <input class="form-control" type="text" placeholder="Telefone" ng-model="contato.telefone">
-        <select class="form-control" ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
-            <option value="">Selecione uma operadora</option>
-        </select>
+        <form name="contatoForm">
+            <input class="form-control" type="text" placeholder="Nome" name="nome" ng-model="contato.nome" ng-required="true" ng-minlength="10" ng-maxlength="25">
+            <input class="form-control" type="text" placeholder="Telefone" name="telefone" ng-model="contato.telefone" ng-required="true" >
+            <select class="form-control" ng-model="contato.operadora" name="operadora" ng-options="operadora.nome for operadora in operadoras" ng-required="true">
+                <option value="">Selecione uma operadora</option>
+            </select>
+        </form>
+        <div ng-messages="contatoForm.nome.$error">
+            <div ng-show="contatoForm.nome.$dirty" class="alert alert-danger" ng-message="required">
+                <strong>Erro!</strong> O campo <strong>Nome</strong> é de preenchimento obrigatório.
+            </div>
+            <div class="alert alert-warning" ng-message="minlength">
+                <strong>Alerta!</strong> Quantidade mínima de caracteres do campo <strong>Nome</strong> é 10.
+            </div>
+            <div class="alert alert-warning" ng-message="maxlength">
+                <strong>Alerta!</strong> Quantidade máxima de caracteres do campo <strong>Nome</strong> é 25.
+            </div>
+        </div>
+        <div ng-messages="contatoForm.telefone.$error">
+            <div ng-show="contatoForm.telefone.$dirty" class="alert alert-danger" ng-message="required">
+                <strong>Erro!</strong> O campo <strong>Telefone</strong> é de preenchimento obrigatório.
+            </div>
+        </div>
+        <div ng-messages="contatoForm.operadora.$error">
+            <div ng-show="contatoForm.operadora.$dirty" class="alert alert-danger" ng-message="required">
+                <strong>Erro!</strong> É obrigatório a seleção de uma <strong>Operadora</strong> !
+            </div>
+        </div>
         <br>
         <button class="btn btn-light btn-block" ng-click="limparCampos(contato)">Limpar</button>
-        <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.telefone">Adicionar</button>
+        <button class="btn btn-primary btn-block" ng-click="adicionarContato(contato)" ng-disabled="!contatoForm.$valid">Adicionar</button>
         <button class="btn btn-danger btn-block" ng-click="removerContato(contatos)" >Remover</button>
     </div>
 </body>
