@@ -13,7 +13,7 @@
     <script src="controller/lista-telefonica-controller.js"></script>
     <style>
         .jumbotron{
-            width: 400px;
+            width: 700px;
             text-align: center;
             margin-top: 20px;
             margin-left: auto;
@@ -36,18 +36,38 @@
 <body ng-controller="listaTelefonicaController">
     <div class="jumbotron">
         <h3 >Lista Telefonica</h3>
+        <br>
+        <div>
+            <p>Sua pesquisa será por:</p>
+            <form>
+              <label class="radio-inline">
+                <input type="radio" name="optradio" value="nome" ng-model="filtroPesquisa">Nome
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio" value="telefone" ng-model="filtroPesquisa">Telefone
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio" value="operadora" ng-model="filtroPesquisa">Operadora
+              </label>
+            </form>
+            <input class="form-control" ng-model="criterioDeBusca" type="text" placeholder="Informe o texto desejado">
+        </div>
+
         <table class="table">
             <tr>
                 <th></th>
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Operadora</th>
+                <th>Data</th>
             </tr>
-            <tr ng-repeat="contato in contatos" ng-class="{'selecionado negrito' : contato.selecionado}" >
+            {{filtroPesquisa}}
+            <tr ng-repeat="contato in contatos | filter:{ filtroPesquisa : criterioDeBusca}" ng-class="{'selecionado negrito' : contato.selecionado}" >
                 <td><input type="checkbox" ng-model="contato.selecionado"></td>
                 <td>{{contato.nome}}</td>
                 <td>{{contato.telefone}}</td>
                 <td>{{contato.operadora.nome}}</td>
+                <td>{{contato.data | date:'dd/MM/yyyy hh:mm a'}}</td>
             </tr>
         </table>
         <form name="contatoForm">

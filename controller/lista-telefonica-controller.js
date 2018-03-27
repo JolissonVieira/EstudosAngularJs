@@ -1,8 +1,8 @@
 angular.module('listaTelefonica').controller('listaTelefonicaController',function($scope){
     $scope.contatos = [
-        {nome: "Jolisson",telefone:"6185131432"},
-        {nome: "Paulo",telefone:"6193267594"},
-        {nome: "Antonio",telefone:"6185142021"}
+        {nome: "Jolisson",telefone:"6185131432",data:new Date()},
+        {nome: "Paulo",telefone:"6193267594",data:new Date()},
+        {nome: "Antonio",telefone:"6185142021",data:new Date()}
     ]
     $scope.operadoras = [
         {nome: "Oi",id:"1"},
