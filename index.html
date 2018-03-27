@@ -10,6 +10,7 @@
     <script src="lib/angular.js"></script>
     <script src="lib/angular-messages.js"></script>
     <script src="controller/modulo-principal.js"></script>
+    <script src="filter/object-filter.js"></script>
     <script src="controller/lista-telefonica-controller.js"></script>
     <style>
         .jumbotron{
@@ -62,7 +63,7 @@
                 <th>Data</th>
             </tr>
             {{filtroPesquisa}}
-            <tr ng-repeat="contato in contatos | filter:{ filtroPesquisa : criterioDeBusca}" ng-class="{'selecionado negrito' : contato.selecionado}" >
+            <tr ng-repeat="contato in contatos | objectFilter: filtroPesquisa : criterioDeBusca" ng-class="{'selecionado negrito' : contato.selecionado}" >
                 <td><input type="checkbox" ng-model="contato.selecionado"></td>
                 <td>{{contato.nome}}</td>
                 <td>{{contato.telefone}}</td>
