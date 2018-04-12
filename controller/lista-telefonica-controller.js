@@ -1,9 +1,14 @@
-angular.module('listaTelefonica').controller('listaTelefonicaController',function($scope){
-    $scope.contatos = [
-        {nome: "Jolisson",telefone:"6185131432",data:new Date()},
-        {nome: "Paulo",telefone:"6193267594",data:new Date()},
-        {nome: "Antonio",telefone:"6185142021",data:new Date()}
-    ]
+angular.module('listaTelefonica').controller('listaTelefonicaController',function($scope, $http){
+
+    $http.get('http://morning-flower-8662.getsandbox.com/obter-contatos').then(function(data){
+        $scope.contatos = data.data;
+        console.log(data.data);
+    })
+    // $scope.contatos = [
+    //     {nome: "Jolisson",telefone:"6185131432",data:new Date()},
+    //     {nome: "Paulo",telefone:"6193267594",data:new Date()},
+    //     {nome: "Antonio",telefone:"6185142021",data:new Date()}
+    // ]
     $scope.operadoras = [
         {nome: "Oi",id:"1"},
         {nome: "Tim",id:"2"},
